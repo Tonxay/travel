@@ -34,7 +34,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List page = [const Home(), AppPage()];
+  List page = [Home(), AppPage()];
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
