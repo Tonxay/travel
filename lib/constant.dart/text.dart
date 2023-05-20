@@ -151,37 +151,10 @@ class CustomFormText extends StatelessWidget {
               decoration: isBouder!
                   ? customDecoration(hintText: hint)
                   : customInputDecoration(hint),
-              validator: FormBuilderValidators.compose(keyname == 'date'
-                  ? [
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.minLength(10,
-                          errorText: "ກະລຸນາໃສ່ວັນທີເດືອນປີໃຫ້ຖືກຕ້ອງ"),
-                      (v) {
-                        int day = int.parse(v![0] + v[1]);
-                        int mount = int.parse(v[3] + v[4]);
-                        int year = int.parse(v.substring(6));
-                        if (year > nowyear.year || year < 1923) {
-                          return "ກະລຸນາໃສ່ ປີ ໃຫ້ຖືກຕ້ອງ";
-                        }
-                        if (day > 31 || day <= 0) {
-                          return "ກະລຸນາໃສ່ ວັນທີ ໃຫ້ຖືກຕ້ອງ";
-                        }
-                        if (mount > 12 || mount <= 0) {
-                          return "ກະລຸນາໃສ່ ເດຶອນ ທີໃຫ້ຖືກຕ້ອງ";
-                        }
-                        return null;
-                      }
-                    ]
-                  : keyname == "phone"
-                      ? [
-                          FormBuilderValidators.required(),
-                          FormBuilderValidators.match(pattternphonenumber,
-                              errorText: "ເບີຂອງທ່ານບໍ່ຖືກຕ້ອງ"),
-                        ]
-                      : [
-                          FormBuilderValidators.required(),
-                          FormBuilderValidators.minLength(3),
-                        ]),
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(),
+                FormBuilderValidators.minLength(3),
+              ]),
             ),
           ),
         ),

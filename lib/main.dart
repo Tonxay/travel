@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:travel_link/constant.dart/constring.dart';
 import 'package:travel_link/page/add_page.dart';
 import 'package:travel_link/page/home_page.dart';
 
-void main() {
+import 'model/location.dart';
+
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(LocationAdapter());
+  await Future.wait([Hive.openBox<Location>(ConstantString.hivebox)]);
   runApp(const MyApp());
 }
 
