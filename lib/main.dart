@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:travel_link/page/add_page.dart';
+import 'package:travel_link/page/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,41 +27,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List page = [const Home(), const AppPage()];
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: page[_currentIndex],
       bottomNavigationBar: SalomonBottomBar(
-        backgroundColor: Colors.grey.withOpacity(0.4),
+        backgroundColor: Colors.grey.withOpacity(0.1),
         currentIndex: _currentIndex,
         onTap: (i) => setState(() => _currentIndex = i),
         items: [
-          /// Home
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
             title: const Text("Home"),
             selectedColor: Colors.purple,
           ),
-
-          /// Likes
           SalomonBottomBarItem(
-            icon: const Icon(Icons.favorite_border),
-            title: const Text("Likes"),
+            icon: const Icon(Icons.add),
+            title: const Text("Add"),
             selectedColor: Colors.pink,
-          ),
-
-          /// Search
-          SalomonBottomBarItem(
-            icon: const Icon(Icons.search),
-            title: const Text("Search"),
-            selectedColor: Colors.orange,
-          ),
-
-          /// Profile
-          SalomonBottomBarItem(
-            icon: const Icon(Icons.person),
-            title: const Text("Profile"),
-            selectedColor: Colors.teal,
           ),
         ],
       ),
