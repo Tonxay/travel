@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:travel_link/model/location.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage({super.key, required this.data});
@@ -62,7 +65,19 @@ class _DetailPageState extends State<DetailPage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 5),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            List<String> location =
+                                widget.data.latlog.toString().split(',');
+                            String googleUrl =
+                                'https://www.google.com/maps/search/?api=1&query=${location[0]},${location[1]}';
+                            if (await launch(googleUrl)) {
+                            } else {
+                              await canLaunch(googleUrl);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text("Map not filew")));
+                            }
+                          },
                           child: const Text('Map'),
                         ),
                       ),
